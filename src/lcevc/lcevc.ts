@@ -55,9 +55,7 @@ export class LCEVC {
             return this.decoder.appendBuffer(
               data.data,
               data.type,
-              data.frag.level,
-              data.frag.start,
-              data.frag.start + data.frag.duration
+              data.frag.level
             )
         }
       })
@@ -77,7 +75,6 @@ export class LCEVC {
       this.hls.on(window.Hls.Events.LEVEL_SWITCHING, (_ : any,data : any) => {
         if (!this.decoder) return
         console.log("level switching, calling resetBuffer() and setLevelSwitching()")
-        this.decoder.resetBuffer()
         this.decoder.setLevelSwitching(data.level)
       })
 
