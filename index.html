@@ -6,10 +6,35 @@
     <title>Flowplayer Wowza + LCEVC</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.0.2/hls.js"></script>
     <link rel="stylesheet" href="https://cdn.flowplayer.com/releases/native/3/stable/style/flowplayer.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
     <script src="lcevc_dec.min.js"></script>
   </head>
   <body>
-    <div id="app"></div>
+   <div class="container" style="max-width: 100%;">
+      <div class="row">
+        <div class="column">
+          <h2>Wowza LCEVC Demo page</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <p>This page is a side by side comparison of a LCEVC stream and a standard 1080p stream using Wowza Streaming Engine and Flowplayer</p>
+        </div>
+      </div>
+      <div id="app">
+        <div class="row">
+        </div>
+      </div>
+      <div class="row">
+          <div class="column column-50 column-center" style="text-align: center;"><h2>LCEVC</h2></div>
+          <div class="column column-50 column-center" style="text-align: center;"><h2>1080p</h2></div>
+      </div>
+
+  </div>
+   
     <script type="module" src="/src/app.ts"></script>
   </body>
 </html>
