@@ -1,4 +1,4 @@
-export function useSrc () {
+export function useSrc () : string {
   const params = new URL(document.location.href).searchParams
   const src = params.get("src") || import.meta.env.VITE_DEFAULT_SRC
   if (src) return src
