@@ -18,6 +18,7 @@ export class LCEVC {
   }
 
   async load (src: string) {
+    await window.LCEVCdec.ready
     this.attachEventHandlers()
     this.hls.attachMedia(this.player)
     this.hls.loadSource(src)
