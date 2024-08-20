@@ -15,6 +15,7 @@ export class LCEVC {
       //enableWorker: false
     })
     this.player.root.insertBefore(this.canvas, this.player.nextSibling)
+    Object.assign(this.player, {hls: this.hls})
   }
 
   async load (src: string) {
@@ -22,7 +23,9 @@ export class LCEVC {
     this.attachEventHandlers()
     this.hls.attachMedia(this.player)
     this.hls.loadSource(src)
-
+    if (this.config.autoplay) {
+      this.player.togglePlay(true)
+    }
   }
 
   private attachEventHandlers () {
