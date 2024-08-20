@@ -13,7 +13,6 @@ timeseries.id = "timeseries"
 app.append(players, timeseries)
 
 const sharedConfig = {
-    duration: false,
     autoplay: true,
 }
 
@@ -38,7 +37,7 @@ async function createStandardPlayer () {
     const standardPlayer = flowplayer(standardPlayerContainer, {
         src: "https://wv-cdn-00-00.wowza.com/1b73262b-d591-47f7-ae7b-de31305545eb/cmaf/4ef22593-ef9d-42b1-96ff-7daab70792eb/playlist.m3u8",
         ...sharedConfig
-    } as any)
+    })
     return {container: standardPlayerContainer, player: standardPlayer}
 }
 

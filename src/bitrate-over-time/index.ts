@@ -45,7 +45,7 @@ export function createBitrateTimeseries (id : string, lcevc : Instance, standard
       },
       axisY: {
         labelInterpolationFnc: (value : number) => {
-          return value / 1_000_000 + "mb"
+          return value / 1_000_000 + "mbps"
         }
       }
     }
@@ -60,8 +60,8 @@ export function createBitrateTimeseries (id : string, lcevc : Instance, standard
       standardSeries.data.shift()
     }
 
-    const lcevcBitrate = lcevc.levels[lcevc.currentLevel].bitrate
-    const standardBitrate = standard.levels[standard.currentLevel].bitrate
+    const lcevcBitrate = lcevc.levels[lcevc.currentLevel]?.bitrate
+    const standardBitrate = standard.levels[standard.currentLevel]?.bitrate
 
     console.log("{lcevc=%s, standard=%s}", lcevcBitrate, standardBitrate)
 
