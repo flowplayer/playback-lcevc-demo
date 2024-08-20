@@ -1,3 +1,7 @@
+declare module "https://esm.run/hls.js@1.0.2" {
+
+}
+
 declare module 'lcevc_dec.js' {
   export default any;
   /*
