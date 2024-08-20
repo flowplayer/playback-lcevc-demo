@@ -34,7 +34,7 @@ export function createBitrateTimeseries (id : string, lcevc : Instance, standard
       // Remove this configuration to see that chart rendered with cardinal spline interpolation
       // Sometimes, on large jumps in data values, it's better to use simple smoothing.
       lineSmooth: Interpolation.simple({
-        divisor: 2
+        divisor: 1_000
       }),
       fullWidth: true,
       showArea: true,
@@ -43,6 +43,11 @@ export function createBitrateTimeseries (id : string, lcevc : Instance, standard
       chartPadding: {
         right: 20
       },
+      axisY: {
+        labelInterpolationFnc: (value : number) => {
+          return value / 1_000_000 + "mb"
+        }
+      }
     }
   )
 
@@ -61,13 +66,14 @@ export function createBitrateTimeseries (id : string, lcevc : Instance, standard
     console.log("{lcevc=%s, standard=%s}", lcevcBitrate, standardBitrate)
 
     if (lcevcBitrate && standardBitrate) {
+      const now = new Date(Date.now())
 
       lcevcSeries.data.push({
-        x: new Date(),
+        x: now,
         y: lcevcBitrate
       })
       standardSeries.data.push({
-        x: new Date(),
+        x: now,
         y: standardBitrate
       })
 
