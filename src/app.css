@@ -22,3 +22,29 @@ html, body {
 .is-lcevc video {
     display: none;
 }
+
+.ct-series-a .ct-bar,.ct-series-a .ct-line,.ct-series-a .ct-point,.ct-series-a .ct-slice-donut {
+    stroke:darkblue !important;
+    fill: darkblue !important;
+    stroke-width: 4px;
+}
+
+.ct-series-a .ct-area,.ct-series-a .ct-slice-pie {
+    fill: darkblue !important;
+    fill-opacity: .8
+}
+
+.ct-series-b .ct-bar,.ct-series-b .ct-line,.ct-series-b .ct-point,.ct-series-b .ct-slice-donut {
+    stroke: blue !important;
+    fill: blue !important;
+    stroke-width: 4px;
+}
+
+.ct-series-b .ct-area,.ct-series-b .ct-slice-pie {
+    fill: blue !important;
+    fill-opacity: .4
+}
+
+.ct-label {
+    font-size: 15px !important;
+}

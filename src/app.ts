@@ -7,10 +7,11 @@ import { createBitrateTimeseries } from "./bitrate-over-time"
 // setup globals
 const app = document.querySelector("#app")!
 const players = document.createElement("div")
+const labels = document.createElement("div")
 players.classList.add("players")
 const timeseries = document.createElement("div")
 timeseries.id = "timeseries"
-app.append(players, timeseries)
+app.append(players, labels, timeseries)
 
 const sharedConfig = {
     autoplay: true,
@@ -47,6 +48,9 @@ async function createStandardPlayer () {
     // spawn the 2 players
     const [lcevc, standard] = await Promise.all([createLCEVCPlayer(), createStandardPlayer()])
     players.append(lcevc.container, standard.container)
+
+    //add labels here
+    labels.append("anything")
     createBitrateTimeseries("#timeseries", lcevc.player.hls, standard.player.hls)
 }())
 

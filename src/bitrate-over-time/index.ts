@@ -1,7 +1,7 @@
 import 'chartist/dist/index.css'
 import { LineChart, Interpolation } from 'chartist'
 
-const MAX_OBSERVATIONS = 60
+const MAX_OBSERVATIONS = 20
 
 type Instance =
   | typeof window.Hls
@@ -33,20 +33,28 @@ export function createBitrateTimeseries (id : string, lcevc : Instance, standard
       low: 0,
       // Remove this configuration to see that chart rendered with cardinal spline interpolation
       // Sometimes, on large jumps in data values, it's better to use simple smoothing.
-      lineSmooth: Interpolation.simple({
-        divisor: 1_000
-      }),
+      //lineSmooth: Interpolation.simple({
+      //  divisor: 1_000
+      //}),
       fullWidth: true,
+      height: "300px",
       showArea: true,
-      showPoint: false,
+      showGrid: true,
+      showPoint: true,
       showLine: false,
       chartPadding: {
-        right: 20
+        right: 50,
+        left: 50,
+        top: 50
       },
       axisY: {
         labelInterpolationFnc: (value : number) => {
           return value / 1_000_000 + "mbps"
         }
+      },
+      axisX: {
+        showLabel: false,
+        showGrid: false
       }
     }
   )
