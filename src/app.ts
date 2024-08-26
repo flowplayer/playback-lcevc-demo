@@ -1,6 +1,8 @@
 import "./app.css"
 import { LCEVC } from "./lcevc/lcevc"
-import { useSrc } from "./use-src"
+import { useSrcLCEVC } from "./use-src-lcevc"
+import { useSrcH264 } from "./use-src-h264"
+import { useToken } from "./use-token"
 import { useFlowplayer } from "./use-flowplayer"
 import { createBitrateTimeseries } from "./bitrate-over-time"
 
@@ -22,9 +24,12 @@ async function createLCEVCPlayer () {
         const flowplayer = useFlowplayer()
         const lcevcPlayerContainer = document.createElement("div")
         lcevcPlayerContainer.classList.add("lcevc-player", "column-50")
-        const lcevcPlayer = flowplayer(lcevcPlayerContainer)
+        const token = useToken()
+        const lcevcPlayer = flowplayer(lcevcPlayerContainer, {
+            token: token
+            })
         const lcevc = new LCEVC(Hls, lcevcPlayer, sharedConfig)
-        const src = useSrc()
+        const src = useSrcLCEVC()
         await lcevc.load(src)
         return {container: lcevcPlayerContainer, player: lcevcPlayer}
     })
@@ -35,10 +40,14 @@ async function createStandardPlayer () {
     const standardPlayerContainer = document.createElement("div")
     standardPlayerContainer.classList.add("standard-player",  "column-50")
     players.append(standardPlayerContainer)
+    const src = useSrcH264()
+    const token = useToken()
     const standardPlayer = flowplayer(standardPlayerContainer, {
-        src: "https://wv-cdn-00-00.wowza.com/1b73262b-d591-47f7-ae7b-de31305545eb/cmaf/4ef22593-ef9d-42b1-96ff-7daab70792eb/playlist.m3u8",
+        token: token,
+        src: src,
         ...sharedConfig
     })
+    
     return {container: standardPlayerContainer, player: standardPlayer}
 }
 
