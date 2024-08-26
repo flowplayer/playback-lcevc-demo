@@ -15,6 +15,10 @@ html, body {
     gap: 1em;
 }
 
+.fp-color { 
+  background-color: #ff8400;
+}
+
 .fp-lcevc-output {
     position: absolute;
 }
@@ -24,25 +28,25 @@ html, body {
 }
 
 .ct-series-a .ct-bar,.ct-series-a .ct-line,.ct-series-a .ct-point,.ct-series-a .ct-slice-donut {
-    stroke:darkblue !important;
-    fill: darkblue !important;
+    stroke:#ff8400 !important;
+    fill: #ff8400 !important;
     stroke-width: 4px;
 }
 
 .ct-series-a .ct-area,.ct-series-a .ct-slice-pie {
-    fill: darkblue !important;
-    fill-opacity: .8
+    fill: #ff8400 !important;
+    fill-opacity: 1
 }
 
 .ct-series-b .ct-bar,.ct-series-b .ct-line,.ct-series-b .ct-point,.ct-series-b .ct-slice-donut {
-    stroke: blue !important;
-    fill: blue !important;
+    stroke: #013053 !important;
+    fill: #013053 !important;
     stroke-width: 4px;
 }
 
 .ct-series-b .ct-area,.ct-series-b .ct-slice-pie {
-    fill: blue !important;
-    fill-opacity: .4
+    fill: #013053 !important;
+    fill-opacity: 1
 }
 
 .ct-label {

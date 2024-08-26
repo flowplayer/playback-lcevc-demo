@@ -36,12 +36,13 @@ export function createBitrateTimeseries (id : string, lcevc : Instance, standard
       //lineSmooth: Interpolation.simple({
       //  divisor: 1_000
       //}),
-      fullWidth: true,
+      //fullWidth: true,
+      width: "50%",
       height: "300px",
-      showArea: true,
+      showArea: false,
       showGrid: true,
       showPoint: true,
-      showLine: false,
+      showLine: true,
       chartPadding: {
         right: 50,
         left: 50,
