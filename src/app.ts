@@ -51,16 +51,29 @@ async function createStandardPlayer () {
     return {container: standardPlayerContainer, player: standardPlayer}
 }
 
-
-
-~(async function main (){
+async function dual (){
     // spawn the 2 players
     const [lcevc, standard] = await Promise.all([createLCEVCPlayer(), createStandardPlayer()])
     players.append(lcevc.container, standard.container)
 
-    //add labels here
-    labels.append("anything")
+    //add chart here
     createBitrateTimeseries("#timeseries", lcevc.player.hls, standard.player.hls)
-}())
+}
 
+async function single (){
+    // spawn the single player
+    const [standard] = await Promise.all([createStandardPlayer()])
+    players.append(standard.container)
+}
+
+~(async function init (){
+
+    const obj = JSON.parse(document.getElementById("app").dataset.json)
+    const mode = obj.mode
+
+    if (mode==1)
+        single()
+    else 
+        dual()
+}())
 
