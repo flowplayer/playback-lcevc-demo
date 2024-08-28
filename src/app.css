@@ -1,12 +1,134 @@
 html, body {
     margin: 0;
     padding: 0;
+    background:#013053;
+    color:#FFF;
+    font-size:18px;
+    font-family: Inter, sans-serif;
 }
-
+section{
+    padding-top:50px !important;
+}
+.container{
+    margin: 0 auto;
+    max-width: 108rem;
+    width: 100%;
+}
+h2{
+    font-size:60px;
+    font-weight:800;
+    text-transform:uppercase;
+}
+h3{
+    font-size:40px;
+    font-weight:800;
+    color:#023053;
+}
+.button{
+    font-weight: 700;
+    font-size: 19px;
+    text-transform:unset;
+    background-color: #ff8400;
+    border: 3px solid #ff8400;
+    border-radius:50px;
+    color:#FFF;
+    padding: 12px 24px;
+    text-decoration: none;
+    height:auto;
+    line-height:18px;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.button:hover, .button:active{
+    background-color:#cc6a00;
+    border-color:#cc6a00;
+}
+.text-center{
+    text-align: center;
+}
+.img-responsive{
+    max-width:100%;
+    height:auto;
+}
+.color-orange{
+    color:#ff8400 !important;
+}
+.color-denim-dark{
+    color:#023053!important
+}
+.color-white{
+    color: #fff !important;;
+}
+.bg-white{
+    background:#FFF !important;
+}
+.bg-denim-bright {
+    background-color: #7ec0dd !important;
+}
+.bg-divider-rel{
+    position:relative;
+    line-height:0;
+}
+.bg-divider-bottom img {
+    position: relative;
+    bottom: -1px;
+    width:100%;
+    height:auto;
+}
+.plus{
+    margin:0 10px;
+}
+.logos{
+    display:flex;
+    align-items:center;
+    margin-bottom:20px;
+}
+.hero-shell{
+    background:#025B90;
+    border-radius:50px;
+    padding:40px;
+}
+#powering-video{
+    padding-bottom:300px;
+}
+.partner-logo-shell{
+    background:#FFF;
+    border-radius:50px;
+    padding:40px;
+    position:relative;
+}
+.laptop{
+    position: absolute;
+    top: 315px;
+    left: -512px;
+    z-index: 99;
+}
+.card-shell{
+    color:#013053;
+    display:flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+.card{
+    width:32%;
+    background:#2f5793;
+    margin-bottom:40px;
+    border-radius:25px;
+    padding:20px 40px;
+    min-height:250px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    font-size:25px;
+}
+.card p{
+    margin-bottom:0;
+}
 #app {
     /*max-width: 1080px;*/
     margin: 0 auto;
-    padding: 1em;
+    padding: 0;
 }
 
 .players {
@@ -52,3 +174,35 @@ html, body {
 .ct-label {
     font-size: 15px !important;
 }
+footer{
+    background:#000;
+    color:#FFF;
+    font-size:14px;
+    padding:20px 0;
+}
+footer p{
+    margin-bottom:0;
+}
+footer a, footer a:active, footer a:visited{
+    color:#FFF;
+    text-decoration:none;
+}
+footer a:hover{
+    color:#ff8400;
+}
+@media screen and (max-width: 640px) {
+    .row .column.column-80, .row .column.column-75{
+        max-width:100%;
+    }
+    .card{
+        width:100%;
+    }
+    .laptop{
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    #powering-video{
+        padding-bottom:50px;
+    }
+  }
