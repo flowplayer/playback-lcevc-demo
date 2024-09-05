@@ -1,17 +1,19 @@
 import 'chartist/dist/index.css'
-import { LineChart, Interpolation } from 'chartist'
+import { LineChart } from 'chartist'
 
 const MAX_OBSERVATIONS = 20
 
 type Instance =
   | typeof window.Hls
 
-type Timeseries = {
-  time: Date,
-  values: Array<number>,
+type Counter = {
+  seconds: number;
+  baseline: number;
+  lcevc: number;
+  series: Array<{x: Date, y: number}>,
 }
 
-export function createBitrateTimeseries (id : string, lcevc : Instance, standard : Instance) {
+export function createBitrateTimeseries (container : HTMLElement, lcevc : Instance, standard : Instance) {
   const lcevcSeries = {
     name: "lcevc",
     data: [] as Array<{x: Date, y: number}>,
@@ -22,12 +24,33 @@ export function createBitrateTimeseries (id : string, lcevc : Instance, standard
     data: [] as Array<{x: Date, y: number}>,
   }
 
-  const series = ()=> ({
-    series: [lcevcSeries, standardSeries],
+  const savedCounter : Counter = {
+    seconds: 0,
+    baseline: 0,
+    lcevc: 0,
+    series: [],
+  }
 
+  const bitrateComparisonSeries = ()=> ({
+    series: [lcevcSeries, standardSeries],
   })
 
-  const chart = new LineChart(id, series(),
+  const bitrateSavedSeries = ()=> ({
+    series: [{data: savedCounter.series, named: "total bits saved"}]
+  })
+
+  const bitrateComparison = document.createElement("div")
+  const bitrateSaved = document.createElement("div")
+
+  container.append(bitrateComparison, bitrateSaved)
+
+  const chartPadding = {
+    right: 50,
+    left: 50,
+    top: 50
+  }
+
+  const bitrateTimeseriesChart = new LineChart(bitrateComparison, bitrateComparisonSeries(),
     {
       high: 7_500_000,
       low: 0,
@@ -36,18 +59,13 @@ export function createBitrateTimeseries (id : string, lcevc : Instance, standard
       //lineSmooth: Interpolation.simple({
       //  divisor: 1_000
       //}),
-      //fullWidth: true,
-      width: "50%",
-      height: "300px",
+      fullWidth: true,
+      //width: "50%",
+      //height: "300px",
       showArea: false,
-      showGrid: true,
       showPoint: true,
       showLine: true,
-      chartPadding: {
-        right: 50,
-        left: 50,
-        top: 50
-      },
+      chartPadding,
       axisY: {
         labelInterpolationFnc: (value : number) => {
           return value / 1_000_000 + "mbps"
@@ -60,22 +78,38 @@ export function createBitrateTimeseries (id : string, lcevc : Instance, standard
     }
   )
 
-  setInterval(function () {
-    while (lcevcSeries.data.length > MAX_OBSERVATIONS) {
-      lcevcSeries.data.shift()
+  const bitsSavedChart = new LineChart(bitrateSaved, bitrateSavedSeries(), {
+    low: -100_000_000,
+    high: 100_000_000,
+    fullWidth: true,
+    chartPadding,
+    axisY: {
+      labelInterpolationFnc: (value : number) => {
+        return (value / 1_000_000) + "gb"
+      }
     }
+  })
 
-    while (standardSeries.data.length > MAX_OBSERVATIONS) {
-      standardSeries.data.shift()
-    }
+  setInterval(function () {
+    [lcevcSeries.data, standardSeries.data, savedCounter.series].forEach(series => {
+      while (series.length > MAX_OBSERVATIONS) {
+        series.shift()
+      }
+    });
 
     const lcevcBitrate = lcevc.levels[lcevc.currentLevel]?.bitrate
     const standardBitrate = standard.levels[standard.currentLevel]?.bitrate
 
-    console.log("{lcevc=%s, standard=%s}", lcevcBitrate, standardBitrate)
-
     if (lcevcBitrate && standardBitrate) {
+      savedCounter.seconds++
+      savedCounter.baseline+=standardBitrate
+      savedCounter.lcevc+=lcevcBitrate
       const now = new Date(Date.now())
+
+      savedCounter.series.push({
+        x: now,
+        y: savedCounter.baseline - savedCounter.lcevc,
+      })
 
       lcevcSeries.data.push({
         x: now,
@@ -86,9 +120,10 @@ export function createBitrateTimeseries (id : string, lcevc : Instance, standard
         y: standardBitrate
       })
 
-      chart.update(series())
+      bitrateTimeseriesChart.update(bitrateComparisonSeries())
+      bitsSavedChart.update(bitrateSavedSeries())
     }
   }, 1_000)
 
-  return chart
+  return container
 }
