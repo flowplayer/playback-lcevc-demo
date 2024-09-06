@@ -137,7 +137,7 @@ h3{
     gap: 1em;
 }
 
-.fp-color { 
+.fp-color {
   background-color: #ff8400;
 }
 
@@ -151,7 +151,7 @@ h3{
 
 .ct-series-a .ct-bar,.ct-series-a .ct-line,.ct-series-a .ct-point,.ct-series-a .ct-slice-donut {
     stroke:#ff8400 !important;
-    fill: #ff8400 !important;
+
     stroke-width: 4px;
 }
 
@@ -162,12 +162,12 @@ h3{
 
 .ct-series-b .ct-bar,.ct-series-b .ct-line,.ct-series-b .ct-point,.ct-series-b .ct-slice-donut {
     stroke: #013053 !important;
-    fill: #013053 !important;
+
     stroke-width: 4px;
 }
 
 .ct-series-b .ct-area,.ct-series-b .ct-slice-pie {
-    fill: #013053 !important;
+
     fill-opacity: 1
 }
 
@@ -206,3 +206,19 @@ footer a:hover{
         padding-bottom:50px;
     }
   }
+
+#timeseries {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    padding:1em 0 0 0;
+}
+
+#timeseries > div {
+    flex-grow: 1;
+    min-height: 5em;
+    height: 100%;
+}
