@@ -46,7 +46,6 @@ async function createStandardPlayer () {
     players.append(standardPlayerContainer)
     const src = useSrcH264()
     const token = useToken()
-    console.log(flowplayer)
     const standardPlayer = flowplayer(standardPlayerContainer, {
         token: token,
         src: src,

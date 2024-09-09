@@ -1,4 +1,5 @@
 import 'chartist/dist/index.css'
+import { legend } from './legend';
 import { LineChart } from 'chartist'
 
 const MAX_OBSERVATIONS = 20
@@ -20,7 +21,7 @@ export function createBitrateTimeseries (container : HTMLElement, lcevc : Instan
   }
 
   const standardSeries = {
-    name: "standard",
+    name: "h264",
     data: [] as Array<{x: Date, y: number}>,
   }
 
@@ -74,6 +75,7 @@ export function createBitrateTimeseries (container : HTMLElement, lcevc : Instan
       showPoint: true,
       showLine: true,
       chartPadding,
+      plugins: [legend],
       axisY: {
         labelInterpolationFnc: (value : number) => {
           return value / 1_000_000 + "mbps"
@@ -93,8 +95,14 @@ export function createBitrateTimeseries (container : HTMLElement, lcevc : Instan
       }
     })
 
+    if (lcevc.media.paused || standard.media.paused) {
+      return
+    }
+
     const lcevcBitrate = lcevc.levels[lcevc.currentLevel]?.bitrate
     const standardBitrate = standard.levels[standard.currentLevel]?.bitrate
+
+
 
     if (lcevcBitrate && standardBitrate) {
       savedCounter.seconds++
