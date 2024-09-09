@@ -24,6 +24,12 @@ h3{
     font-weight:800;
     color:#023053;
 }
+h5 {
+    color: #023053;
+    font-size: 1em;
+    font-weight: 700;
+}
+
 .button{
     font-weight: 700;
     font-size: 19px;
@@ -221,4 +227,14 @@ footer a:hover{
     flex-grow: 1;
     min-height: 5em;
     height: 100%;
+}
+
+#timeseries h5 {
+    text-align: center;
+    display: flex;
+    gap: 1em;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }

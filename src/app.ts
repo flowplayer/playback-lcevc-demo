@@ -31,7 +31,7 @@ async function createLCEVCPlayer () {
         const token = useToken()
         const lcevcPlayer = flowplayer(lcevcPlayerContainer, {
             token: token
-            })
+        })
         const lcevc = new LCEVC(Hls, lcevcPlayer, sharedConfig)
         const src = useSrcLCEVC()
         await lcevc.load(src)
@@ -46,6 +46,7 @@ async function createStandardPlayer () {
     players.append(standardPlayerContainer)
     const src = useSrcH264()
     const token = useToken()
+    console.log(flowplayer)
     const standardPlayer = flowplayer(standardPlayerContainer, {
         token: token,
         src: src,
