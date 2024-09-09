@@ -1,3 +1,10 @@
+:root {
+    --wowza-orange: #ff8400;
+    --wowza-blue: #013053;
+    --lcevc: var(--wowza-orange);
+    --h264: var(--wowza-blue);
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -155,25 +162,29 @@ h5 {
     display: none;
 }
 
-.ct-series-a .ct-bar,.ct-series-a .ct-line,.ct-series-a .ct-point,.ct-series-a .ct-slice-donut {
-    stroke:#ff8400 !important;
-
+[*|series-name="lcevc"] .ct-bar,
+[*|series-name="lcevc"] .ct-line,
+[*|series-name="lcevc"] .ct-point,
+[*|series-name="lcevc"] .ct-slice-donut {
+    stroke: var(--lcevc) !important;
     stroke-width: 4px;
 }
 
-.ct-series-a .ct-area,.ct-series-a .ct-slice-pie {
+[*|series-name="lcevc"] .ct-area,
+[*|series-name="lcevc"] .ct-slice-pie {
     fill: #ff8400 !important;
     fill-opacity: 1
 }
 
-.ct-series-b .ct-bar,.ct-series-b .ct-line,.ct-series-b .ct-point,.ct-series-b .ct-slice-donut {
-    stroke: #013053 !important;
-
+[*|series-name="h264"] .ct-bar,
+[*|series-name="h264"] .ct-line,
+[*|series-name="h264"] .ct-point,
+[*|series-name="h264"] .ct-slice-donut {
+    stroke: var(--h264) !important;
     stroke-width: 4px;
 }
 
-.ct-series-b .ct-area,.ct-series-b .ct-slice-pie {
-
+[*|series-name="h264"] .ct-area,[*|series-name="h264"] .ct-slice-pie {
     fill-opacity: 1
 }
 
@@ -237,4 +248,26 @@ footer a:hover{
     margin: 0;
     padding: 0;
     text-align: center;
+}
+
+#timeseries .legend {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    gap: 1em;
+}
+
+.legend li:before {
+
+    content: " ";
+    margin-right: 1em;
+}
+
+li.lcevc:before{
+    border: 4px solid var(--lcevc);
+}
+
+li.h264:before {
+    border: 4px solid var(--h264);
 }
