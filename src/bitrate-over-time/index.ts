@@ -35,20 +35,28 @@ export function createBitrateTimeseries (container : HTMLElement, lcevc : Instan
     series: [lcevcSeries, standardSeries],
   })
 
-  const bitrateSavedSeries = ()=> ({
-    series: [{data: savedCounter.series, named: "total bits saved"}]
-  })
-
   const bitrateComparison = document.createElement("div")
-  const bitrateSaved = document.createElement("div")
 
-  container.append(bitrateComparison, bitrateSaved)
+  container.append(bitrateComparison)
 
   const chartPadding = {
     right: 50,
     left: 50,
     top: 50
   }
+
+  const comparisonTitle = document.createElement('h5')
+
+  const leftTitle = document.createElement("span")
+  leftTitle.textContent = "bitrate over time"
+
+  const totalSaved = document.createElement("span")
+
+
+  comparisonTitle.append(leftTitle, totalSaved)
+
+
+  bitrateComparison.append(comparisonTitle)
 
   const bitrateTimeseriesChart = new LineChart(bitrateComparison, bitrateComparisonSeries(),
     {
@@ -78,24 +86,12 @@ export function createBitrateTimeseries (container : HTMLElement, lcevc : Instan
     }
   )
 
-  const bitsSavedChart = new LineChart(bitrateSaved, bitrateSavedSeries(), {
-    low: -100_000_000,
-    high: 100_000_000,
-    fullWidth: true,
-    chartPadding,
-    axisY: {
-      labelInterpolationFnc: (value : number) => {
-        return (value / 1_000_000) + "gb"
-      }
-    }
-  })
-
   setInterval(function () {
     [lcevcSeries.data, standardSeries.data, savedCounter.series].forEach(series => {
       while (series.length > MAX_OBSERVATIONS) {
         series.shift()
       }
-    });
+    })
 
     const lcevcBitrate = lcevc.levels[lcevc.currentLevel]?.bitrate
     const standardBitrate = standard.levels[standard.currentLevel]?.bitrate
@@ -115,13 +111,15 @@ export function createBitrateTimeseries (container : HTMLElement, lcevc : Instan
         x: now,
         y: lcevcBitrate
       })
+
       standardSeries.data.push({
         x: now,
         y: standardBitrate
       })
 
       bitrateTimeseriesChart.update(bitrateComparisonSeries())
-      bitsSavedChart.update(bitrateSavedSeries())
+      const bitsSaved = ((savedCounter.baseline - savedCounter.lcevc) / 1_000_000).toFixed(2)
+      totalSaved.textContent = bitsSaved + "mb saved"
     }
   }, 1_000)
 
