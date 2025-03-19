@@ -4,6 +4,7 @@ import { useSrcLCEVC } from "./use-src-lcevc"
 import { useSrcH264 } from "./use-src-h264"
 import { useSrcLLHLS} from "./use-src-llhls"
 import { useSrcWebRTC } from "./use-src-webrtc"
+import { startTime } from "./clock"
 
 import { useToken } from "./use-token"
 import { useFlowplayer } from "./use-flowplayer"
@@ -83,25 +84,18 @@ async function createWebRTCPlayer () {
     const src = useSrcWebRTC()
     const token = useToken()
   
-  
+  	// perhaps parse the URL here for app and stream?
+  	
     const standardPlayer = flowplayer(standardPlayerContainer, {
         token: token,
         src: {
     	type: "wowza/webrtc",
     	sdpUrl: "wss://675222e9860da.streamlock.net/webrtc-session.json?app=llive&stream=demo",
     	applicationName: "live",
-    	streamName: "demo",
+    	streamName: "multi1.stream",
     	},
         ...sharedConfig
     })
-    /*
-        const standardPlayer = flowplayer(standardPlayerContainer, {
-        token: token,
-        src: src,
-        ...sharedConfig
-    })
-    */
-
 
     return {container: standardPlayerContainer, player: standardPlayer}
 }
@@ -149,4 +143,4 @@ else if (mode==2)
 else
 	single()
 
-
+startTime()

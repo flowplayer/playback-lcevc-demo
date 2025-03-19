@@ -22,3 +22,14 @@ http://localhost:8085/nab2025.html?src2=http://127.0.0.1:1935/live/_definst_/dem
 ffmpeg -re -stream_loop -1 -i /Library/WowzaStreamingEngine/content/TimeScapes_1080p.mp4 -vf "drawtext=text='%{localtime \:%H.%M.%S.%3N}':fontcolor=white:fontsize=60:x=10:y=10" -c:v libx264 -preset fast -g 24  -c:a copy -f flv rtmp://wowza:blogflix@34.57.43.86:1935/live/demo
 
 ffmpeg -re -stream_loop -1 -i timescape.mp4 -vf "drawtext=text='%{localtime\:%H.%M.%S.%3N}':fontcolor=white:fontsize=24:x=10:y=10" -c:v libx264 -preset fast -g 30 -c:a copy -f mpegts udp://localhost:9999
+
+
+http://127.0.0.1:8085/nab2025-multiplayer.html
+
+Stream with FFMPEG over multicast so I can pick up in 2 separate apps, one for LLHLS and one for HLS + WebRTC
+ffmpeg -re -stream_loop -1 -i content/TimeScapes_1080p.mp4 -vf "drawtext=text='%{gmtime\:%M.%S.%3N}':fontcolor=black:fontsize=120:x=10:y=10, drawtext=text='%{gmtime\:%M.%S.%3N}':fontcolor=white:fontsize=120:x=14:y=14" -c:v libx264 -preset ultrafast -tune zerolatency -g 30 -c:a copy -f mpegts udp://239.0.0.1:10101?pkt_size=131
+
+-vf "drawtext=fontsize=120:fontcolor=black:text='%{gmtime\:%T}':x=24:y=24,drawtext=fontsize=120:fontcolor=white:text='%{gmtime\:%T}':x=20:y=20"
+
+-tune zerolatency
+-preset ultrafast
