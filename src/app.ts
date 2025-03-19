@@ -15,6 +15,7 @@ const players = document.createElement("div")
 
 const sharedConfig = {
     autoplay: true,
+    loop: true,
 }
 
 function layout () {
