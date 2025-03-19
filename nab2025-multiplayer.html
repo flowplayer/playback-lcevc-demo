@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wowza NAB 2025</title>
+  <link rel="icon" href="public/img/wowza-logo-48x48-1-1.ico" sizes="32x32" />
+  <link rel="icon" href="public/img/wowza-logo-48x48-1-1.ico" sizes="192x192" />
+  <link rel="apple-touch-icon" href="public/img/wowza-logo-48x48-1-1.ico" />
+  <link rel="stylesheet" href="https://cdn.flowplayer.com/releases/native/3/stable/style/flowplayer.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inter:300,400,700,400&ver=6.6.1' media='all' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+  <link rel="stylesheet" href="src/app.css"> <!-- here for local dev  -->
+
+</head>
+
+<body>
+  <main>
+    <section id="hero" class="container">
+      <div class="row">
+        <div class="column">
+          <div class="hero-shell">
+            <div class="logos">
+              <img src="public/img/wowza-logo.png" height="50" width="246" alt="Wowza Logo" />
+            </div>
+            <div class="row">
+              <div class="column">
+                <div id="app" data-json='{"mode":3}'>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+            	<div class="column text-center">
+            		<h3 class="color-white">Standard HLS</h3>
+            	</div>
+            	<div class="column text-center">
+            		<h3 class="color-white">Low Latency HLS</h3>
+            	</div>
+            	<div class="column text-center">
+            		<h3 class="color-white">WebRTC</h3>
+            	</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="streaming-platform" class="container">
+      <div class="row">
+        <div class="column text-center">
+          <h2>Wowza <span class="color-orange">Streaming Platform</span></h2>
+          <img src="public/img/wowza-streaming-platform-v2.png" width="1542" height="665" class="img-responsive"
+            alt="Streaming platform graphic" />
+        </div>
+      </div>
+    </section>
+    <div class="bg-divider-rel bg-divider-bottom">
+      <img loading="lazy" decoding="async" src="public/img/divider-denim-bright-top-XOO.svg" height="146" width="1753">
+    </div>
+    <section id="powering-video" class="bg-denim-bright">
+      <div class="container">
+        <div class="row">
+          <div class="column">
+            <h3>Powering Better Video Through Partnerships</h3>
+            <a href="#" class="button">Get To Know Wowza's Partners</a>
+          </div>
+          <div class="column column-75">
+            <div class="partner-logo-shell">
+              <img src="public/img/partner-logos.png" class="img-responsive" alt="Partner logos listed" />
+              <img src="public/img/wowza-laptop-product-screen-800x480-v2.png" class="img-responsive laptop"
+                alt="Laptop with Wowza Video UI" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="bg-divider-rel bg-denim-bright bg-divider-bottom">
+      <img loading="lazy" decoding="async" src="public/img/divider-white-top-XXO.svg" height="146" width="1753">
+    </div>
+    <section id="meet-with-wowza" class="bg-white">
+      <div class="container">
+        <div class="row">
+          <div class="column">
+            <h3 class="color-denim-dark"><span class="color-orange">WOWZA'S</span><br>Unique Advantages</h3>
+          </div>
+          <div class="column column-80">
+            <div class="card-shell">
+              <div class="card color-white">
+                <p>Sells the&nbsp;<strong>most powerful live transcoder</strong> in the industry</p>
+              </div>
+              <div class="card" style="background:#92bddc;">
+                <p>Deployed in <strong>72% of the countries in the world</strong></p>
+              </div>
+              <div class="card" style="background:#ea8e24;">
+                <p><strong>Flexibility</strong> in deployment: on-premise, hybrid, cloud</p>
+              </div>
+              <div class="card" style="background:#f2f2f2;">
+                <p>Best-in-class <strong>live streaming and playback</strong></p>
+              </div>
+              <div class="card" style="background:#f1c52e;">
+                <p>Works with <strong>54 of the Fortune Global 500</strong></p>
+              </div>
+              <div class="card color-white" style="background:#3a67b9;">
+                <p>Actively runs on over&nbsp;<strong>171,000 instances</strong>outside of Wowza</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="column"><p><img style="margin-right: 10px;vertical-align:middle;" src="public/img/wowza-footer-logo.png" alt="Wowza" width="46" height="46"> © 2007-2024 Wowza Media Systems™, LLC. All rights reserved. &emsp; <a href="https://www.wowza.com/legal/privacy/">Security &amp; Privacy Policy</a> | <a href="https://www.wowza.com/legal/">Legal</a> | <a href="https://status.wowza.com/" target="_blank" rel="noopener">System Status</a></p></div>
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="/src/app.ts"></script>
+</body>
+
+</html>

@@ -2,6 +2,9 @@ import "./app.css"
 import { LCEVC } from "./lcevc/lcevc"
 import { useSrcLCEVC } from "./use-src-lcevc"
 import { useSrcH264 } from "./use-src-h264"
+import { useSrcLLHLS} from "./use-src-llhls"
+import { useSrcWebRTC } from "./use-src-webrtc"
+
 import { useToken } from "./use-token"
 import { useFlowplayer } from "./use-flowplayer"
 import { createBitrateTimeseries } from "./bitrate-over-time"
@@ -55,6 +58,53 @@ async function createStandardPlayer () {
     return {container: standardPlayerContainer, player: standardPlayer}
 }
 
+async function createLLHLSPlayer () {
+    const flowplayer = useFlowplayer()
+    const standardPlayerContainer = document.createElement("div")
+    standardPlayerContainer.classList.add("standard-player",  "column-50")
+    players.append(standardPlayerContainer)
+    const src = useSrcLLHLS()
+    const token = useToken()
+    const standardPlayer = flowplayer(standardPlayerContainer, {
+        token: token,
+        src: src,
+        ...sharedConfig
+    })
+
+    return {container: standardPlayerContainer, player: standardPlayer}
+}
+
+async function createWebRTCPlayer () {
+    const flowplayer = useFlowplayer()
+    const standardPlayerContainer = document.createElement("div")
+    standardPlayerContainer.classList.add("standard-player",  "column-50")
+    players.append(standardPlayerContainer)
+    const src = useSrcWebRTC()
+    const token = useToken()
+  
+  
+    const standardPlayer = flowplayer(standardPlayerContainer, {
+        token: token,
+        src: {
+    	type: "wowza/webrtc",
+    	sdpUrl: "wss://675222e9860da.streamlock.net/webrtc-session.json?app=llive&stream=demo",
+    	applicationName: "live",
+    	streamName: "demo",
+    	},
+        ...sharedConfig
+    })
+    /*
+        const standardPlayer = flowplayer(standardPlayerContainer, {
+        token: token,
+        src: src,
+        ...sharedConfig
+    })
+    */
+
+
+    return {container: standardPlayerContainer, player: standardPlayer}
+}
+
 async function dual (){
     const {timeseries} = layout()
     // spawn the 2 players
@@ -72,12 +122,30 @@ async function single (){
     players.append(standard.container)
 }
 
+async function triple (){
+	layout()
+    // spawn the 3 players
+    const [standard] = await Promise.all([createStandardPlayer()])
+    
+    players.append(standard.container)
+    
+    const [standard2] = await Promise.all([createLLHLSPlayer()])
+    
+    players.append(standard2.container)
+    
+    const [standard3] = await Promise.all([createWebRTCPlayer()])
+    
+    players.append(standard3.container)
+}
+
 const obj = JSON.parse(app.dataset.json!)
 const mode = obj.mode
 
-if (mode==1)
-    single()
-else
+if (mode==3)
+    triple()
+else if (mode==2)
     dual()
+else
+	single()
 
 
