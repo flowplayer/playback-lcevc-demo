@@ -83,8 +83,6 @@ async function createWebRTCPlayer () {
     players.append(standardPlayerContainer)
     const src = useSrcWebRTC()
     const token = useToken()
-  
-  	// perhaps parse the URL here for app and stream?
   	
     const standardPlayer = flowplayer(standardPlayerContainer, {
         token: token,
