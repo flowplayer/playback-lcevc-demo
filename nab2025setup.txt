@@ -86,6 +86,32 @@ curl --location 'https://api.video.wowza.com/api/v2.0/transcoders/k2lbgxzn/prope
 "property": {
 	"key": "/Application/TimedText/captionLiveIngestLanguages",
 	"section": "wse_custom",
-	"value": "en, es, de"
+	"value": "en, es, de, jp"
 	}
 }'
+
+
+curl --location 'https://api.video.wowza.com/api/v2.0/stream_targets/cgjxygfd/properties' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NTU3NzEwZS0yYzhlLTQ1MDgtOTEwOS1hZWMxNTEwODAxY2UiLCJqdGkiOiI2YjQ3MTJmMzM5Y2RjZDJmMGQ2MjQxNTMzZWMxNTFkMmYyOWU1Mzg5NDEwZWY0MjcxNzIwOTUyYTJjMDc4Njc2MjdiYTE3NmI0ZWVlNGYwOSIsImlhdCI6MTc0MjUxMDU0OSwibmJmIjoxNzQyNTEwNTQ5LCJleHAiOjIzNzM2NjI1NDksInN1YiI6Ik9VLTAxYjZmNmNlLWVhOWEtNGEyNC1hODRjLWE5OTY0NGYzMDU1ZSIsIm9yZ2FuaXphdGlvbl9pZCI6Ik9SRy04NmU4MWY5Ny05YjJmLTExZWMtOWFhOC0xMjFlYTM1MzI3MzYiLCJ1c2VyX2lkIjoiVVNSLWFtOUF3bzRDME83N1Q1S3hYYnUyVzRHUWdoIiwicm9sZXMiOlsiYWR2X3dvcmtncm91cF91c2VyIiwic3VwcG9ydF91c2VyIiwid2NsX3N1cHBvcnQiLCJ3b3JrZ3JvdXBfdXNlciJdfQ.5GvQLLPphb2ttfiR1HlcmdDexE9Tl3x4h4DPXkjhrDOFCvr4dWXoc1VcSPjSsza5bB3BdcrHebhCw79vt2pqKazieMADMIxCi_KaSkVI58hB_4wKgWBBdT3vTPRL0sMSOOI2MJelRCUnt3sYDYTIEw7RmpKK-MIj0J-xoNoi9IbtWewjzuHjpHlSQjMeyJ1WKCD3FPTXa5-X-MYM1bJUxYd4aAkU2JLER7d55EWDuCYKWHWRhn3mUjumgjSe4pkm8jKm2qDcpTLNMfIAN48e6PL86WJRsUY-AGIWCjQfkZEh_cloYMOMICulQQA7lQauptlnq5TM9JZRX85nkXyKfKjDBkihSQDQpbn37zIxC3cVhOI8ad2HkE8TKKmEyoWd1pxhFAytXGhMEU_OzURFJRMYhQmeFEJeDRFpBFV3nHg0WL1kYYAuoXB52t9J9pUokIPTQ9pHefnBbrsgml7CBmAQqVY5KsMVjNu5M-mmIBfSHomtwI7Nb5na6f9WFoWGqklzXofWPCI4QFcCNtGO-ILygWrp9diykL9uEX0e03GFjE5wlRUszrztwSOcSS5OxDogUw1rS-VtBzx16MFlLgFxfOCDoUEsvzNXhREl_QHy7YhCCVEDUBjzH_BP1Ci4RzCBtDq6sSkqeZfwMDKQpsZuAie8LuQdHtzkKFdNksU' \
+--data '{ 
+	"property": {
+        "key": "chunkSize",
+        "section": "hls",
+        "value": "2"
+    }
+}'
+
+curl --location 'https://api.video.wowza.com/api/v2.0/transcoders/8m7fhx6l/outputs' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NTU3NzEwZS0yYzhlLTQ1MDgtOTEwOS1hZWMxNTEwODAxY2UiLCJqdGkiOiI2YjQ3MTJmMzM5Y2RjZDJmMGQ2MjQxNTMzZWMxNTFkMmYyOWU1Mzg5NDEwZWY0MjcxNzIwOTUyYTJjMDc4Njc2MjdiYTE3NmI0ZWVlNGYwOSIsImlhdCI6MTc0MjUxMDU0OSwibmJmIjoxNzQyNTEwNTQ5LCJleHAiOjIzNzM2NjI1NDksInN1YiI6Ik9VLTAxYjZmNmNlLWVhOWEtNGEyNC1hODRjLWE5OTY0NGYzMDU1ZSIsIm9yZ2FuaXphdGlvbl9pZCI6Ik9SRy04NmU4MWY5Ny05YjJmLTExZWMtOWFhOC0xMjFlYTM1MzI3MzYiLCJ1c2VyX2lkIjoiVVNSLWFtOUF3bzRDME83N1Q1S3hYYnUyVzRHUWdoIiwicm9sZXMiOlsiYWR2X3dvcmtncm91cF91c2VyIiwic3VwcG9ydF91c2VyIiwid2NsX3N1cHBvcnQiLCJ3b3JrZ3JvdXBfdXNlciJdfQ.5GvQLLPphb2ttfiR1HlcmdDexE9Tl3x4h4DPXkjhrDOFCvr4dWXoc1VcSPjSsza5bB3BdcrHebhCw79vt2pqKazieMADMIxCi_KaSkVI58hB_4wKgWBBdT3vTPRL0sMSOOI2MJelRCUnt3sYDYTIEw7RmpKK-MIj0J-xoNoi9IbtWewjzuHjpHlSQjMeyJ1WKCD3FPTXa5-X-MYM1bJUxYd4aAkU2JLER7d55EWDuCYKWHWRhn3mUjumgjSe4pkm8jKm2qDcpTLNMfIAN48e6PL86WJRsUY-AGIWCjQfkZEh_cloYMOMICulQQA7lQauptlnq5TM9JZRX85nkXyKfKjDBkihSQDQpbn37zIxC3cVhOI8ad2HkE8TKKmEyoWd1pxhFAytXGhMEU_OzURFJRMYhQmeFEJeDRFpBFV3nHg0WL1kYYAuoXB52t9J9pUokIPTQ9pHefnBbrsgml7CBmAQqVY5KsMVjNu5M-mmIBfSHomtwI7Nb5na6f9WFoWGqklzXofWPCI4QFcCNtGO-ILygWrp9diykL9uEX0e03GFjE5wlRUszrztwSOcSS5OxDogUw1rS-VtBzx16MFlLgFxfOCDoUEsvzNXhREl_QHy7YhCCVEDUBjzH_BP1Ci4RzCBtDq6sSkqeZfwMDKQpsZuAie8LuQdHtzkKFdNksU' \
+
+curl https://cdn3.wowza.com/1/MTVqaDY1V0FoVnRF/RGwwcUty/hls/live/playlist.m3u8
+curl https://cdn3.wowza.com/1/MTVqaDY1V0FoVnRF/RGwwcUty/hls/live/../q1j5pgvc/subtitles/es_subtitlelist.m3u8
+curl https://cdn3.wowza.com/1/MTVqaDY1V0FoVnRF/RGwwcUty/hls/live/../q1j5pgvc/subtitles/0001ubx4/subtitlechunk_les_38.webvtt
+
+
+
+Stream trailer to WV for captions generation
+ffmpeg -re -stream_loop -1 -i Gone_Girl-TLR-2R-5.1-4K-HDTN.mp4 -vf "scale=1920:1080" -c:v libx264 -preset veryfast -b:v 5M -maxrate 5M -bufsize 10M -g 48 -keyint_min 48 -c:a aac -b:a 128k -ac 2 -f flv rtmp://client2:91057206@984fd3db07aa.entrypoint.cloud.wowza.com/app-9gf01ddp/91057206
+
+ffmpeg -re -stream_loop -1 -i Gone_Girl-TLR-2R-5.1-4K-HDTN.mp4 -vf "scale=1920:-1:flags=lanczos,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:black" -c:v libx264 -preset fast -b:v 5M -maxrate 5M -bufsize 10M -g 48 -keyint_min 48 -c:a aac -b:a 128k -ac 2 Gone_Girl-TLR-2R-1080P.mp4
