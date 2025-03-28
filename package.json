@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "typescript": "^5.2.2",
-    "vite": "^5.3.6"
+    "vite": "^6.2.3"
   },
   "author": "Benjamin Clos",
   "license": "ISC",
