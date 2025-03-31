@@ -129,6 +129,8 @@ async function triple (){
     const [standard3] = await Promise.all([createWebRTCPlayer()])
     
     players.append(standard3.container)
+    
+    startTime()
 }
 
 const obj = JSON.parse(app.dataset.json!)
@@ -141,4 +143,3 @@ else if (mode==2)
 else
 	single()
 
-startTime()
